@@ -13,15 +13,15 @@ const BannerItem: React.FC<BannerItemProps> = ({
   title,
   description,
 }) => (
-  <div className="flex flex-row items-center gap-4 w-[340px]">
-    <div className="w-[84px] h-[84px] flex items-center justify-center bg-[#F3E8FF] rounded-full">
+  <div className="grid grid-cols-[84px_1fr] gap-4 items-center w-full">
+    <div className="w-21 h-21 flex items-center justify-center rounded-full">
       {icon}
     </div>
-    <div className="flex flex-col justify-center gap-2 w-[240px]">
-      <h3 className="font-bold text-lg text-white font-['Be_Vietnam_Pro']">
+    <div className="flex flex-col justify-center gap-2">
+      <h3 className="font-bold text-lg text-white">
         {title}
       </h3>
-      <p className="font-normal text-lg leading-[23px] text-white font-['Be_Vietnam_Pro']">
+      <p className="font-normal text-base leading-[23px] text-white">
         {description}
       </p>
     </div>
@@ -30,20 +30,20 @@ const BannerItem: React.FC<BannerItemProps> = ({
 
 const Banner = () => {
   return (
-    <div className="flex flex-row flex-wrap justify-between items-center content-start p-10 md:px-20 lg:px-40 gap-[69.5px] w-full min-w-[1398px] h-[164px] bg-[#4E2E87]">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-4 md:px-20 lg:px-40 py-10 w-full bg-[#4E2E87]">
       <BannerItem
-        icon={<Heart size={48} color="#4E2E87" />}
+        icon={<Heart size={48} color="#F8F3FE" />}
         title="Care"
         description="The care you need at the home you love."
       />
       <BannerItem
-        icon={<Clock size={48} color="#4E2E87" />}
+        icon={<Clock size={48} color="#F8F3FE" />}
         title="Assistance"
         description="Homecare assistance available 24/7."
       />
       <BannerItem
         icon={
-          <div className="relative w-[84px] h-[84px]">
+          <div className="relative w-21 h-21">
             <Image
               src="/images/quality.png"
               alt="Quality"
@@ -56,7 +56,7 @@ const Banner = () => {
         description="Accredited by authorized state agencies."
       />
       <BannerItem
-        icon={<Stethoscope size={48} color="#4E2E87" />}
+        icon={<Stethoscope size={48} color="#F8F3FE" />}
         title="Management"
         description="Managed by trained doctors and nurses."
       />

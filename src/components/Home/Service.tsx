@@ -1,4 +1,4 @@
-import { UserCog, Users, Apple, UserPlus, Activity, HousePlus } from "lucide-react";
+import { UserCog, Users, Apple, UserPlus, Activity, HousePlus } from "lucide-react"
 
 const services = [
   {
@@ -37,30 +37,30 @@ const services = [
     description:
       "Managed by a team of doctors and nurses, Axzons is a CDPAP agency for the entire state of New York.",
   },
-];
+]
 
-export default function ServicesSection() {
+export default function Component() {
   return (
-    <section className="bg-primary-50 py-20 px-40 w-full min-w-[1398px] h-[584px]">
+    <section className="bg-primary-50 py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 w-full">
       <div className="max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-md p-6 flex flex-col"
+              className="bg-white rounded-xl shadow-md p-4 sm:p-6 flex flex-col h-full"
             >
-              <div className="flex items-start mb-4">
-                <div className="bg-[#F3E8FF] p-3 rounded-lg mr-4">
-                  <service.icon className="w-8 h-8 text-primary-800" />
+              <div className="flex flex-col sm:flex-row items-start mb-4">
+                <div className="bg-[#F3E8FF] p-3 rounded-lg mb-4 sm:mb-0 sm:mr-4">
+                  <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary-800" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-black mb-2">
+                  <h3 className="text-xl sm:text-2xl font-bold text-black mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-[#797979] mb-4">{service.description}</p>
+                  <p className="text-sm sm:text-base text-[#797979] mb-4">{service.description}</p>
                 </div>
               </div>
-              <button className="mt-auto self-end px-5 py-2.5 border border-primary-600 text-primary-600 rounded-md font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+              <button className="mt-auto self-start sm:self-end px-4 sm:px-5 py-2 sm:py-2.5 border border-primary-600 text-primary-600 rounded-md text-sm sm:text-base font-semibold hover:bg-primary-600 hover:text-white transition-colors">
                 Learn More
               </button>
             </div>
@@ -68,5 +68,5 @@ export default function ServicesSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -33,7 +33,7 @@ export default function Hero() {
           (866) 4AXZONS
         </Button>
       </div>
-      <div className="absolute w-[80%] md:w-[90%] lg:w-[1005px] h-[60%] md:h-[70%] lg:h-[981px] right-[-10%] md:right-[-15%] lg:right-[-80px] top-[20%] md:top-[10%] lg:top-[-101px]">
+      <div className="absolute w-[80%] md:w-[90%] lg:w-[750px] h-[60%] md:h-[70%] lg:h-[780px] right-[-10%] md:right-[-15%] lg:right-[-80px] top-[20%] md:top-[10%] lg:top-[-10px]">
         <Image
           src="/images/Blob.png"
           alt="Healthcare worker assisting elderly patient"
