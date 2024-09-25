@@ -10,7 +10,7 @@ export default function JoinFamily() {
 
   return (
     <section className="bg-white py-16 px-4 md:px-10 lg:px-20 max-w-[1920px]">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1600px] mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-20">
           <div className="flex flex-col gap-6 w-full lg:w-1/2">
             <h2 className="text-4xl lg:text-5xl font-bold text-[#222222]">
@@ -22,16 +22,16 @@ export default function JoinFamily() {
               the state of New York, and homecare services in New York, New
               Jersey and Georgia.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="flex items-center justify-center gap-2 w-full sm:w-[200px] h-[50px] bg-primary-600 hover:bg-primary-700 rounded-md text-white text-lg font-semibold">
-                <Phone className="w-5 h-5" />
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 w-full sm:w-auto">
+              <Button className="flex items-center justify-center gap-2 w-full sm:w-[376px] h-[65px] bg-primary-600 hover:bg-primary-700 rounded-md text-white text-lg font-semibold">
+                <Phone className="w-6 h-6" />
                 (866) 4AXZONS
               </Button>
               <Button
                 variant="outline"
-                className="flex items-center justify-center gap-2 w-full sm:w-[200px] h-[50px] border-primary-600 hover:text-primary-700 hover:bg-primary-50 rounded-md text-primary-600 text-lg font-semibold"
+                className="flex items-center justify-center gap-2 w-full sm:w-[376px] h-[65px] border-primary-600 hover:text-primary-700 hover:bg-primary-50 rounded-md text-primary-600 text-lg font-semibold"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-6 h-6" />
                 Send a message
               </Button>
             </div>
@@ -59,15 +59,21 @@ export default function JoinFamily() {
                 Join Our Team
               </button>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Input
-                placeholder="Postal Code or City or State"
-                className="w-full sm:w-[60%] h-[50px] border-[#797979] rounded-md text-lg"
-              />
-              <Button className="flex items-center justify-center gap-2 w-full sm:w-[40%] h-[50px] bg-primary-600 hover:bg-primary-700 rounded-md text-white text-lg font-semibold">
-                <Search className="w-5 h-5" />
-                Find a local office
-              </Button>
+            <div className="w-full max-w-[784px]">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+                <div className="w-full sm:w-1/2">
+                  <Input
+                    placeholder="Postal Code or City or State"
+                    className="w-full h-[65px] border-[#797979] rounded-md text-lg px-4"
+                  />
+                </div>
+                <div className="w-full sm:w-1/2">
+                  <Button className="w-full h-[65px] bg-primary-600 hover:bg-primary-700 rounded-md text-white text-lg font-semibold flex items-center justify-center gap-2">
+                    <Search className="w-6 h-6" />
+                    Find a local office
+                  </Button>
+                </div>
+              </div>
             </div>
             <Button
               variant="link"
