@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import JoinFamily from "@/components/Home/JoinFamily";
 
-const serviceData = [
+export const serviceData = [
   {
     title: "Homecare Services",
     description:
@@ -12,6 +13,7 @@ const serviceData = [
     bgColor: "bg-primary-100",
     textColor: "text-black",
     imagePosition: "right",
+    slug: "homecare-services",
   },
   {
     title: "Private Duty Nursing",
@@ -21,6 +23,7 @@ const serviceData = [
     bgColor: "bg-primary-800",
     textColor: "text-white",
     imagePosition: "left",
+    slug: "private-duty-nursing",
   },
   {
     title: "Specialized Care",
@@ -30,6 +33,7 @@ const serviceData = [
     bgColor: "bg-primary-100",
     textColor: "text-black",
     imagePosition: "right",
+    slug: "specialized-care",
   },
   {
     title: "Nutritional Counseling",
@@ -39,6 +43,7 @@ const serviceData = [
     bgColor: "bg-primary-800",
     textColor: "text-white",
     imagePosition: "left",
+    slug: "nutritional-counseling",
   },
   {
     title: "Medical Social Service",
@@ -48,6 +53,7 @@ const serviceData = [
     bgColor: "bg-primary-100",
     textColor: "text-black",
     imagePosition: "right",
+    slug: "medical-social-service",
   },
   {
     title: "Consumer Directed (CDPAP)",
@@ -57,6 +63,7 @@ const serviceData = [
     bgColor: "bg-primary-800",
     textColor: "text-white",
     imagePosition: "left",
+    slug: "cdpap",
   },
 ];
 
@@ -68,11 +75,12 @@ interface ServiceCardProps {
     bgColor: string;
     textColor: string;
     imagePosition: "left" | "right";
+    slug: string;
   };
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => (
-  <div className="flex flex-col md:flex-row w-full overflow-hidden rounded-lg shadow-md">
+  <div className="flex flex-col md:flex-row w-full overflow-hidden rounded-2xl">
     {service.imagePosition === "left" && (
       <div className="w-full md:w-1/2">
         <Image
@@ -95,12 +103,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => (
       <p className={`text-lg md:text-xl mb-6 ${service.textColor}`}>
         {service.description}
       </p>
-      <Button
-        variant="outline"
-        className="flex flex-row items-center justify-center px-5 py-2.5 w-36 h-12 bg-white text-primary-600 border border-[#7E22CE] rounded-md hover:bg-primary-100 font-semibold text-base"
-      >
-        Learn More
-      </Button>
+      <Link href={`/services/${service.slug}`}>
+        <Button
+          variant="outline"
+          className="flex flex-row items-center justify-center px-5 py-2.5 w-36 h-12 bg-white text-primary-600 border border-[#7E22CE] rounded-md hover:bg-primary-100 font-semibold text-base"
+        >
+          Learn More
+        </Button>
+      </Link>
     </div>
     {service.imagePosition === "right" && (
       <div className="w-full md:w-1/2">
