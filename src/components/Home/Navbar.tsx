@@ -20,11 +20,12 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Check if the current path is a child of /services
     if (pathname.startsWith('/services')) {
       setActiveLink('/services');
     } else if (pathname.startsWith('/cdpap')) {
       setActiveLink('/cdpap');
+    } else if (pathname.startsWith('/locations')) {
+      setActiveLink('/locations');
     } else {
       setActiveLink(pathname);
     }
@@ -93,6 +94,7 @@ export default function Navbar() {
           >
             LOCATIONS
           </Link>
+          <Link href="/request-care">
           <Button
             variant={activeLink === "/request-care" ? "default" : "outline"}
             className={`h-10 px-3 xl:px-4 py-2 rounded-full text-xs xl:text-sm 2xl:text-base font-semibold uppercase whitespace-nowrap ${
@@ -103,6 +105,8 @@ export default function Navbar() {
           >
             REQUEST CARE
           </Button>
+          </Link>
+          <Link href="/join-our-team">
           <Button
             variant={activeLink === "/join-our-team" ? "default" : "outline"}
             className={`h-10 px-3 xl:px-4 py-2 rounded-full text-xs xl:text-sm 2xl:text-base font-semibold uppercase whitespace-nowrap ${
@@ -112,7 +116,8 @@ export default function Navbar() {
             }`}
           >
             JOIN OUR TEAM
-          </Button>
+            </Button>
+          </Link>
         </div>
         <div className="lg:hidden">
           <Sheet>

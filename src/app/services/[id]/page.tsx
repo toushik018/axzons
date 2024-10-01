@@ -1,17 +1,13 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { serviceData } from "../page";
-
-// Import all service components
 import HomecareServices from "@/components/Services/Homecare";
 import PrivateDutyNursing from "@/components/Services/PrivateDutyNursing";
 import SpecializedCare from "@/components/Services/SpecializedCare";
 import NutritionalCounseling from "@/components/Services/NutritionalCounseling";
 import MedicalSocialService from "@/components/Services/MedicalSocialService";
-// Import other service components as needed
-// import PrivateDutyNursing from '@/components/Services/PrivateDutyNursing';
-// import SpecializedCare from '@/components/Services/SpecializedCare';
-// ... and so on for other services
+import CDPAP from "@/components/Services/CDPAP";
+
 
 export async function generateStaticParams() {
   return serviceData.map((service) => ({
@@ -40,6 +36,8 @@ const ServicePage = ({ params }: { params: { id: string } }) => {
         return <NutritionalCounseling />;
       case "medical-social-service":
         return <MedicalSocialService />;
+      case "cdpap":
+        return <CDPAP />;
       // ... and so on for other services
       default:
         // Fallback content if no specific component is available
