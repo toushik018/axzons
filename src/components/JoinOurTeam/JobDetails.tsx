@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { Job } from "@/constants/jobs";
 import {
   MapPin,
@@ -15,12 +16,20 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { formatDate } from "@/utils/dateFormate";
+import JobApplicationForm from "@/components/JobApplication/JobApplicationForm";
 
 interface JobDetailsProps {
   job: Job;
 }
 
 const JobDetails: React.FC<JobDetailsProps> = ({ job }) => {
+  const [showApplicationForm, setShowApplicationForm] = useState(false);
+  const [applicantCount, setApplicantCount] = useState(0);
+
+  useEffect(() => {
+    setApplicantCount(Math.floor(Math.random() * 20));
+  }, []);
+
   return (
     <div className="bg-[#F3FFF0] min-h-screen py-20">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,8 +59,7 @@ const JobDetails: React.FC<JobDetailsProps> = ({ job }) => {
                 </span>
               </div>
               <p className="text-sm text-gray-500">
-                Posted {formatDate(job.datePosted)} |{" "}
-                {Math.floor(Math.random() * 20)} applicants
+                Posted {formatDate(job.datePosted)} | {applicantCount} applicants
               </p>
 
               <h2 className="text-xl font-bold mt-8 mb-4">About the Job</h2>
@@ -85,7 +93,10 @@ const JobDetails: React.FC<JobDetailsProps> = ({ job }) => {
           <div className="w-full lg:w-1/3">
             <div className="sticky top-20">
               <div className="bg-[#F3E8FF] rounded-2xl p-5 flex flex-col items-start gap-5">
-                <Button className="w-full bg-[#7E22CE] text-white hover:bg-[#6B1FAF] rounded-xl py-5 px-6 flex justify-center items-center gap-2">
+                <Button
+                  onClick={() => setShowApplicationForm(true)}
+                  className="w-full bg-[#7E22CE] text-white hover:bg-[#6B1FAF] rounded-xl py-5 px-6 flex justify-center items-center gap-2"
+                >
                   <span className="text-xl font-semibold">Apply</span>
                   <ArrowUpRight className="w-6 h-6" />
                 </Button>
@@ -126,6 +137,10 @@ const JobDetails: React.FC<JobDetailsProps> = ({ job }) => {
           </div>
         </div>
       </div>
+      <JobApplicationForm 
+        isOpen={showApplicationForm} 
+        onClose={() => setShowApplicationForm(false)} 
+      />
     </div>
   );
 };

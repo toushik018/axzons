@@ -20,12 +20,14 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname.startsWith('/services')) {
-      setActiveLink('/services');
-    } else if (pathname.startsWith('/cdpap')) {
-      setActiveLink('/cdpap');
-    } else if (pathname.startsWith('/locations')) {
-      setActiveLink('/locations');
+    if (pathname.startsWith("/services")) {
+      setActiveLink("/services");
+    } else if (pathname.startsWith("/cdpap")) {
+      setActiveLink("/cdpap");
+    } else if (pathname.startsWith("/locations")) {
+      setActiveLink("/locations");
+    } else if (pathname.startsWith("/join-our-team")) {
+      setActiveLink("/join-our-team");
     } else {
       setActiveLink(pathname);
     }
@@ -73,8 +75,8 @@ export default function Navbar() {
                 key={item}
                 href={`/${item.toLowerCase()}`}
                 className={`text-black hover:text-gray-700 px-2 py-2 text-sm xl:text-base 2xl:text-xl font-semibold uppercase whitespace-nowrap ${
-                  activeLink === `/${item.toLowerCase()}` 
-                    ? "text-primary-600 border-b-2 border-primary-600" 
+                  activeLink === `/${item.toLowerCase()}`
+                    ? "text-primary-600 border-b-2 border-primary-600"
                     : ""
                 }`}
               >
@@ -87,35 +89,35 @@ export default function Navbar() {
           <Link
             href="/locations"
             className={`text-black px-2 py-2 text-sm xl:text-base 2xl:text-xl font-semibold uppercase whitespace-nowrap ${
-              activeLink === "/locations" 
-                ? "text-primary-600 border-b-2 border-primary-600" 
+              activeLink === "/locations"
+                ? "text-primary-600 border-b-2 border-primary-600"
                 : ""
             }`}
           >
             LOCATIONS
           </Link>
           <Link href="/request-care">
-          <Button
-            variant={activeLink === "/request-care" ? "default" : "outline"}
-            className={`h-10 px-3 xl:px-4 py-2 rounded-full text-xs xl:text-sm 2xl:text-base font-semibold uppercase whitespace-nowrap ${
-              activeLink === "/request-care"
-                ? "bg-primary-600 text-white hover:bg-primary-700"
-                : "text-black border-black hover:bg-gray-100"
-            }`}
-          >
-            REQUEST CARE
-          </Button>
+            <Button
+              variant={activeLink === "/request-care" ? "default" : "outline"}
+              className={`h-10 px-3 xl:px-4 py-2 rounded-full text-xs xl:text-sm 2xl:text-base font-semibold uppercase whitespace-nowrap ${
+                activeLink === "/request-care"
+                  ? "bg-primary-600 text-white hover:bg-primary-700"
+                  : "text-black border-black hover:bg-gray-100"
+              }`}
+            >
+              REQUEST CARE
+            </Button>
           </Link>
           <Link href="/join-our-team">
-          <Button
-            variant={activeLink === "/join-our-team" ? "default" : "outline"}
-            className={`h-10 px-3 xl:px-4 py-2 rounded-full text-xs xl:text-sm 2xl:text-base font-semibold uppercase whitespace-nowrap ${
-              activeLink === "/join-our-team"
-                ? "bg-primary-600 text-white hover:bg-primary-700"
-                : "text-black border-black hover:bg-gray-100"
-            }`}
-          >
-            JOIN OUR TEAM
+            <Button
+              variant={activeLink === "/join-our-team" ? "default" : "outline"}
+              className={`h-10 px-3 xl:px-4 py-2 rounded-full text-xs xl:text-sm 2xl:text-base font-semibold uppercase whitespace-nowrap ${
+                activeLink === "/join-our-team"
+                  ? "bg-primary-600 text-white hover:bg-primary-700"
+                  : "text-black border-black hover:bg-gray-100"
+              }`}
+            >
+              JOIN OUR TEAM
             </Button>
           </Link>
         </div>
