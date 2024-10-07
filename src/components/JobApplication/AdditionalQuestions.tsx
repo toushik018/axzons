@@ -3,7 +3,12 @@
 import React from "react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { UseFormRegister, FieldErrors, Controller, Control } from "react-hook-form";
+import {
+  UseFormRegister,
+  FieldErrors,
+  Controller,
+  Control,
+} from "react-hook-form";
 import { FormData } from "./JobApplicationForm";
 
 interface AdditionalQuestionsProps {
@@ -30,19 +35,22 @@ const AdditionalQuestions: React.FC<AdditionalQuestionsProps> = ({
             control={control}
             rules={{ required: "This field is required" }}
             render={({ field }) => (
-              <RadioGroup
-                onValueChange={field.onChange}
-                value={field.value}
-              >
+              <RadioGroup onValueChange={field.onChange} value={field.value}>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <RadioGroupItem value="yes" id="legallyAuthorized-yes" />
-                  <Label htmlFor="legallyAuthorized-yes" className="text-sm sm:text-base">
+                  <Label
+                    htmlFor="legallyAuthorized-yes"
+                    className="text-sm sm:text-base"
+                  >
                     Yes
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <RadioGroupItem value="no" id="legallyAuthorized-no" />
-                  <Label htmlFor="legallyAuthorized-no" className="text-sm sm:text-base">
+                  <Label
+                    htmlFor="legallyAuthorized-no"
+                    className="text-sm sm:text-base"
+                  >
                     No
                   </Label>
                 </div>
@@ -65,19 +73,22 @@ const AdditionalQuestions: React.FC<AdditionalQuestionsProps> = ({
             control={control}
             rules={{ required: "This field is required" }}
             render={({ field }) => (
-              <RadioGroup
-                onValueChange={field.onChange}
-                value={field.value}
-              >
+              <RadioGroup onValueChange={field.onChange} value={field.value}>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <RadioGroupItem value="yes" id="requireVisa-yes" />
-                  <Label htmlFor="requireVisa-yes" className="text-sm sm:text-base">
+                  <Label
+                    htmlFor="requireVisa-yes"
+                    className="text-sm sm:text-base"
+                  >
                     Yes
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <RadioGroupItem value="no" id="requireVisa-no" />
-                  <Label htmlFor="requireVisa-no" className="text-sm sm:text-base">
+                  <Label
+                    htmlFor="requireVisa-no"
+                    className="text-sm sm:text-base"
+                  >
                     No
                   </Label>
                 </div>
@@ -99,19 +110,22 @@ const AdditionalQuestions: React.FC<AdditionalQuestionsProps> = ({
             control={control}
             rules={{ required: "This field is required" }}
             render={({ field }) => (
-              <RadioGroup
-                onValueChange={field.onChange}
-                value={field.value}
-              >
+              <RadioGroup onValueChange={field.onChange} value={field.value}>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <RadioGroupItem value="yes" id="driversLicense-yes" />
-                  <Label htmlFor="driversLicense-yes" className="text-sm sm:text-base">
+                  <Label
+                    htmlFor="driversLicense-yes"
+                    className="text-sm sm:text-base"
+                  >
                     Yes
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <RadioGroupItem value="no" id="driversLicense-no" />
-                  <Label htmlFor="driversLicense-no" className="text-sm sm:text-base">
+                  <Label
+                    htmlFor="driversLicense-no"
+                    className="text-sm sm:text-base"
+                  >
                     No
                   </Label>
                 </div>

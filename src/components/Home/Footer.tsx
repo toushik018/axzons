@@ -1,5 +1,6 @@
 import { InstagramLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { Facebook, LinkedinIcon, Phone } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -8,8 +9,13 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12 md:py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h2 className="text-2xl md:text-3xl font-bold">Axzons HomeCare</h2>
-            <p className="text-sm md:text-base leading-relaxed">
+            <Image
+              src="/images/footerLogo.png"
+              alt="Axzons HomeCare Logo"
+              width={177}
+              height={69}
+            />
+            <p className="text-lg leading-relaxed">
               Axzons homecare has been a leading provider of homecare and CDPAP
               services for nearly two decades in the state of New York. The
               Axzons team, managed by doctors and nurses, is committed to
@@ -19,7 +25,7 @@ export default function Footer() {
             </p>
           </div>
           <div className="space-y-4">
-            <h3 className="text-xl md:text-2xl font-semibold">Services</h3>
+            <h3 className="text-5xl font-semibold">Services</h3>
             <ul className="space-y-2">
               {[
                 "Homecare Services",
@@ -29,7 +35,7 @@ export default function Footer() {
                 "Medical Social Services",
                 "Consumer Directed (CDPAP)",
               ].map((service) => (
-                <li key={service} className="text-sm md:text-base">
+                <li key={service} className="text-lg">
                   <Link href="#" className="hover:underline">
                     {service}
                   </Link>
@@ -38,7 +44,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-xl md:text-2xl font-semibold">Quick Links</h3>
+            <h3 className="text-5xl font-semibold">Quick Links</h3>
             <ul className="space-y-2">
               {[
                 "About Us",
@@ -47,13 +53,13 @@ export default function Footer() {
                 "Privacy Policy",
                 "Terms and Conditions",
               ].map((link) => (
-                <li key={link} className="text-sm md:text-base">
+                <li key={link} className="text-lg">
                   <Link href="#" className="hover:underline">
                     {link}
                   </Link>
                 </li>
               ))}
-              <li className="flex items-center gap-2 text-sm md:text-base">
+              <li className="flex items-center gap-2 text-lg">
                 <Phone className="w-5 h-5" />
                 <Link href="tel:8664299667" className="hover:underline">
                   (866) 4AXZONS
@@ -62,10 +68,10 @@ export default function Footer() {
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-xl md:text-2xl font-semibold">We Serve</h3>
+            <h3 className="text-5xl font-semibold">We Serve</h3>
             <ul className="space-y-2">
               {["New York", "New Jersey", "Georgia"].map((location) => (
-                <li key={location} className="text-sm md:text-base">
+                <li key={location} className="text-lg">
                   {location}
                 </li>
               ))}

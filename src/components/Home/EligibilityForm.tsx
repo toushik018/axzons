@@ -41,6 +41,23 @@ export default function EligibilityForm() {
     // Handle form submission here
   };
 
+  const renderSelectItem = (
+    value: string,
+    label: string,
+    formKey: keyof typeof formData
+  ) => (
+    <SelectItem value={value} className="relative">
+      <div className="flex items-center">
+        <span
+          className={`w-1 h-5 bg-primary-600 mr-2 ${
+            formData[formKey] === value ? "opacity-100" : "opacity-0"
+          }`}
+        ></span>
+        <span>{label}</span>
+      </div>
+    </SelectItem>
+  );
+
   return (
     <section className="bg-[#F3FFF0] py-10 md:py-20 px-4 md:px-10 lg:px-40 flex flex-col lg:flex-row justify-between gap-8 lg:gap-[68px] max-w-[1920px] min-h-[806px]">
       <div className="flex items-center gap-6 md:gap-10 w-full lg:w-[647px]">
@@ -97,9 +114,22 @@ export default function EligibilityForm() {
               <SelectValue placeholder="Preferred Contact Time" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="morning">Morning</SelectItem>
-              <SelectItem value="afternoon">Afternoon</SelectItem>
-              <SelectItem value="evening">Evening</SelectItem>
+              {renderSelectItem(
+                "Morning (8:00 AM - 11:59 AM)",
+                "Morning (8:00 AM - 11:59 AM)",
+                "contactTime"
+              )}
+              {renderSelectItem(
+                "Afternoon (12:00 PM - 5:00 PM)",
+                "Afternoon (12:00 PM - 5:00 PM)",
+                "contactTime"
+              )}
+              {renderSelectItem(
+                "Evening (5:01 PM - 7:00 PM)",
+                "Evening (5:01 PM - 7:00 PM)",
+                "contactTime"
+              )}
+              {renderSelectItem("Anytime", "Anytime", "contactTime")}
             </SelectContent>
           </Select>
           <Select onValueChange={handleSelectChange("timeZone")}>
@@ -107,10 +137,10 @@ export default function EligibilityForm() {
               <SelectValue placeholder="Time Zone" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="est">Eastern Time</SelectItem>
-              <SelectItem value="cst">Central Time</SelectItem>
-              <SelectItem value="mst">Mountain Time</SelectItem>
-              <SelectItem value="pst">Pacific Time</SelectItem>
+              {renderSelectItem("Eastern Time", "Eastern Time", "timeZone")}
+              {renderSelectItem("Central Time", "Central Time", "timeZone")}
+              {renderSelectItem("Mountain Time", "Mountain Time", "timeZone")}
+              {renderSelectItem("Pacific Time", "Pacific Time", "timeZone")}
             </SelectContent>
           </Select>
         </div>
@@ -120,9 +150,11 @@ export default function EligibilityForm() {
               <SelectValue placeholder="Type of Insurance" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="medicaid">Medicaid</SelectItem>
-              <SelectItem value="medicare">Medicare</SelectItem>
-              <SelectItem value="private">Private Insurance</SelectItem>
+              {renderSelectItem("Medicare", "Medicare", "insuranceType")}
+              {renderSelectItem("Medicaid", "Medicaid", "insuranceType")}
+              {renderSelectItem("MLTC", "MLTC", "insuranceType")}
+              {renderSelectItem("Private", "Private", "insuranceType")}
+              {renderSelectItem("Other", "Other", "insuranceType")}
             </SelectContent>
           </Select>
           <Select onValueChange={handleSelectChange("relationship")}>
@@ -130,9 +162,15 @@ export default function EligibilityForm() {
               <SelectValue placeholder="Relationship to Client" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="self">Self</SelectItem>
-              <SelectItem value="family">Family Member</SelectItem>
-              <SelectItem value="caregiver">Caregiver</SelectItem>
+              {renderSelectItem("Parent", "Parent", "relationship")}
+              {renderSelectItem("Son/Daughter", "Son/Daughter", "relationship")}
+              {renderSelectItem("Self", "Self", "relationship")}
+              {renderSelectItem(
+                "Other family member",
+                "Other family member",
+                "relationship"
+              )}
+              {renderSelectItem("Friend", "Friend", "relationship")}
             </SelectContent>
           </Select>
         </div>
@@ -144,8 +182,9 @@ export default function EligibilityForm() {
           className="w-full h-[136px] bg-white text-[#797979] text-base md:text-lg leading-[23px] rounded-md px-4 py-[13px]"
         />
         <Button
+          variant="primary"
           type="submit"
-          className="w-full h-[60px] bg-[#7E22CE] text-white text-lg md:text-xl font-semibold leading-[25px] rounded-xl hover:bg-[#6A1FB1]"
+          className="w-full h-[60px] text-white text-lg md:text-xl font-semibold leading-[25px] rounded-xl"
         >
           Submit
         </Button>

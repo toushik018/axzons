@@ -49,14 +49,14 @@ export default function Service() {
               key={index}
               className="bg-white rounded-xl shadow-md p-4 sm:p-6 flex flex-col h-full"
             >
-              <div className="flex items-start mb-4">
-                <div className="bg-[#F3E8FF] p-3 rounded-lg mr-4 flex-shrink-0">
+              <div className="flex flex-col sm:flex-row items-start mb-4">
+                <div className="bg-[#F3E8FF] p-3 rounded-lg mb-4 sm:mb-0 sm:mr-4 flex-shrink-0">
                   <Image
                     src={service.icon}
                     alt={service.title}
                     width={48}
                     height={48}
-                    className="w-16 h-16"
+                    className="w-12 h-12 sm:w-16 sm:h-16"
                   />
                 </div>
                 <div>
@@ -68,7 +68,7 @@ export default function Service() {
                   </p>
                 </div>
               </div>
-              <button className="mt-auto self-end px-4 sm:px-5 py-2 sm:py-2.5 border border-primary-600 text-primary-600 rounded-md text-sm sm:text-base font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+              <button className="mt-auto self-start sm:self-end px-4 sm:px-5 py-2 sm:py-2.5 border border-primary-600 text-primary-600 rounded-md text-sm sm:text-base font-semibold hover:bg-primary-600 hover:text-white transition-colors">
                 Learn More
               </button>
             </div>

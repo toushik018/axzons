@@ -48,7 +48,7 @@ export default function HowItWorksFAQ() {
 
   return (
     <section className="bg-white py-12 sm:py-16 md:py-20">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-black">
           Here&apos;s how it works
         </h2>

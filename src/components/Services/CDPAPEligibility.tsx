@@ -19,7 +19,7 @@ const caregiverCriteria = [
 export default function CDPAPEligibility() {
   return (
     <section className="bg-[#F8F3FE] py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1600px] mx-auto">
         <h2 className="text-4xl font-bold text-center text-[#222222] mb-10">
           Who is eligible for the CDPAP program?
         </h2>

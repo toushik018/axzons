@@ -12,14 +12,16 @@ const FAQItem = ({
   <div className="flex flex-col w-full shadow-lg rounded-2xl overflow-hidden">
     <div className="flex items-center p-4 sm:p-6 gap-4 bg-primary-100">
       <div className="flex-shrink-0 flex justify-center items-center w-12 h-12 sm:w-14 sm:h-14 bg-primary-600 rounded-full">
-        <span className="font-bold text-lg sm:text-xl text-white">{number}</span>
+        <span className="font-bold text-lg sm:text-xl text-white">
+          {number}
+        </span>
       </div>
-      <h3 className="font-bold text-lg sm:text-xl text-black flex-grow h-auto">
+      <h3 className="font-bold text-2xl text-black flex-grow h-auto">
         {question}
       </h3>
     </div>
     <div className="p-4 sm:p-6 bg-primary-50 h-full">
-      <p className="text-base sm:text-lg text-black">{answer}</p>
+      <p className="text-lg text-black">{answer}</p>
     </div>
   </div>
 );

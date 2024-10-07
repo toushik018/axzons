@@ -45,8 +45,11 @@ export default function SpecializedCare() {
               assistance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 w-full max-w-[784px]">
-              <Button className="flex items-center justify-center gap-2 bg-[#7E22CE] text-white rounded-xl py-3 sm:py-5 px-4 sm:px-8 text-lg sm:text-xl font-semibold w-full sm:w-[376px] h-[50px] sm:h-[65px]">
-                <Phone size={20} className="sm:w-6 sm:h-6" />
+              <Button
+                variant="primary"
+                className="w-full md:w-[376px] h-[65px] px-4 md:px-8 py-2.5 flex items-center justify-center gap-2 text-xl font-semibold"
+              >
+                <Phone className="h-5 w-5 md:h-6 md:w-6" />
                 (866) 4AXZONS
               </Button>
               <Button

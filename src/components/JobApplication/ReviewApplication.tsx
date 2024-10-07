@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Eye } from "lucide-react";
-import { FormData } from './JobApplicationForm';
+import { FormData } from "./JobApplicationForm";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 interface ReviewApplicationProps {
   formData: Partial<FormData>;
@@ -14,13 +24,24 @@ const ReviewApplication: React.FC<ReviewApplicationProps> = ({
   onBack,
   onSubmit,
 }) => {
-  const viewFile = (e: React.MouseEvent, file: File | null) => {
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+
+  const viewFile = (e: React.MouseEvent, file: File | null | undefined) => {
     e.preventDefault();
     e.stopPropagation();
-    if (file) {
+    if (file instanceof File) {
       const fileURL = URL.createObjectURL(file);
-      window.open(fileURL, '_blank');
+      window.open(fileURL, "_blank");
     }
+  };
+
+  const handleSubmit = () => {
+    setShowConfirmDialog(true);
+  };
+
+  const confirmSubmit = () => {
+    setShowConfirmDialog(false);
+    onSubmit();
   };
 
   return (
@@ -38,7 +59,8 @@ const ReviewApplication: React.FC<ReviewApplicationProps> = ({
         </h4>
         <div className="space-y-2 sm:space-y-3 text-sm sm:text-base">
           <p>
-            <span className="font-semibold">Name:</span> {formData.firstName} {formData.lastName}
+            <span className="font-semibold">Name:</span> {formData.firstName}{" "}
+            {formData.lastName}
           </p>
           <p>
             <span className="font-semibold">Phone Country Code:</span>{" "}
@@ -60,7 +82,7 @@ const ReviewApplication: React.FC<ReviewApplicationProps> = ({
           Resume
         </h4>
         <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
-          <Button 
+          <Button
             type="button"
             className="w-full sm:w-[400px] h-[55px] bg-[#4E2E87] text-white hover:bg-[#3D2468] px-[30px] py-[15px] rounded-[6px] flex items-center justify-between"
             onClick={(e) => viewFile(e, formData.resume as File)}
@@ -71,17 +93,18 @@ const ReviewApplication: React.FC<ReviewApplicationProps> = ({
             </span>
             <Eye size={24} className="text-white" />
           </Button>
-          <Button 
-            type="button"
-            className="w-full sm:w-[400px] h-[55px] bg-[#4E2E87] text-white hover:bg-[#3D2468] px-[30px] py-[15px] rounded-[6px] flex items-center justify-between"
-            onClick={(e) => viewFile(e, formData.coverLetter as File)}
-            disabled={!formData.coverLetter}
-          >
-            <span className="font-semibold text-[20px] leading-[25px]">
-              Cover Letter
-            </span>
-            <Eye size={24} className="text-white" />
-          </Button>
+          {formData.coverLetter && (
+            <Button
+              type="button"
+              className="w-full sm:w-[400px] h-[55px] bg-[#4E2E87] text-white hover:bg-[#3D2468] px-[30px] py-[15px] rounded-[6px] flex items-center justify-between"
+              onClick={(e) => viewFile(e, formData.coverLetter as File)}
+            >
+              <span className="font-semibold text-[20px] leading-[25px]">
+                Cover Letter
+              </span>
+              <Eye size={24} className="text-white" />
+            </Button>
+          )}
         </div>
       </div>
 
@@ -123,12 +146,30 @@ const ReviewApplication: React.FC<ReviewApplicationProps> = ({
         </Button>
         <Button
           type="button"
-          onClick={onSubmit}
+          onClick={handleSubmit}
           className="w-full sm:w-[270px] h-[40px] sm:h-[65px] px-4 sm:px-10 py-2 sm:py-5 text-sm sm:text-xl rounded-full bg-[#7E22CE] text-white hover:bg-[#6B1FAF] transition-all duration-300"
         >
           <span className="font-semibold">Submit Application</span>
         </Button>
       </div>
+
+      <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirm Submission</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to submit your application? Once submitted,
+              you won&apos;t be able to make any changes.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmSubmit}>
+              Submit
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

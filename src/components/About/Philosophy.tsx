@@ -57,7 +57,7 @@ const Philosophy: React.FC = () => {
               {philosophyItems.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white p-4 rounded-xl shadow-md flex gap-4"
+                  className="bg-white p-4 rounded-xl shadow-md flex flex-col lg:flex-row gap-4"
                 >
                   <div className="bg-primary-100 p-3 rounded-lg flex-shrink-0 w-[105px] h-[105px] flex items-center justify-center">
                     <Image
@@ -68,15 +68,15 @@ const Philosophy: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-[#222222] mb-2">
+                    <h4 className="text-2xl font-bold text-[#222222] mb-2">
                       {item.title}
                     </h4>
-                    <p className="text-[#797979] text-sm">{item.description}</p>
+                    <p className="text-[#797979] text-lg">{item.description}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="w-full lg:w-1/3 mt-10 lg:mt-0">
+            <div className="w-full lg:w-1/3 mt-2 lg:mt-0">
               <Image
                 src="/images/Services_Illustration2.png"
                 alt="Services Illustration"

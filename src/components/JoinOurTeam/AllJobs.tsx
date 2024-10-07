@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Link from 'next/link';
+import Link from "next/link";
 
 interface Filters {
   datePosted: string;
@@ -46,11 +46,23 @@ const AllJobs: React.FC = () => {
       const matchesJobType =
         filters.jobType === "" || job.schedule === filters.jobType;
       const matchesExperienceLevel =
-        filters.experienceLevel === "" || job.experienceLevel === filters.experienceLevel;
-      const matchesSalary = filters.salary === "" || matchesSalaryRange(job.salary, filters.salary);
-      const matchesDatePosted = filters.datePosted === "" || isWithinDateRange(job.datePosted, filters.datePosted);
+        filters.experienceLevel === "" ||
+        job.experienceLevel === filters.experienceLevel;
+      const matchesSalary =
+        filters.salary === "" || matchesSalaryRange(job.salary, filters.salary);
+      const matchesDatePosted =
+        filters.datePosted === "" ||
+        isWithinDateRange(job.datePosted, filters.datePosted);
 
-      return matchesSearch && matchesState && matchesRemote && matchesJobType && matchesExperienceLevel && matchesSalary && matchesDatePosted;
+      return (
+        matchesSearch &&
+        matchesState &&
+        matchesRemote &&
+        matchesJobType &&
+        matchesExperienceLevel &&
+        matchesSalary &&
+        matchesDatePosted
+      );
     });
 
     setFilteredJobs(filtered);
@@ -72,19 +84,22 @@ const AllJobs: React.FC = () => {
     });
   };
 
-  const matchesSalaryRange = (jobSalary: number, salaryFilter: string): boolean => {
-    const [min, max] = salaryFilter.split('-').map(Number);
+  const matchesSalaryRange = (
+    jobSalary: number,
+    salaryFilter: string
+  ): boolean => {
+    const [min, max] = salaryFilter.split("-").map(Number);
     return jobSalary >= min && (max ? jobSalary <= max : true);
   };
 
   const isWithinDateRange = (datePosted: Date, dateFilter: string): boolean => {
     const now = new Date();
     switch (dateFilter) {
-      case 'Past 24 hours':
+      case "Past 24 hours":
         return now.getTime() - datePosted.getTime() <= 24 * 60 * 60 * 1000;
-      case 'Past week':
+      case "Past week":
         return now.getTime() - datePosted.getTime() <= 7 * 24 * 60 * 60 * 1000;
-      case 'Past month':
+      case "Past month":
         return now.getTime() - datePosted.getTime() <= 30 * 24 * 60 * 60 * 1000;
       default:
         return true;
@@ -92,20 +107,20 @@ const AllJobs: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="flex flex-col md:flex-row gap-4 mb-8">
-        <div className="relative flex">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+    <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="flex flex-col md:flex-row gap-4 mb-8 w-full md:w-1/2">
+        <div className="relative flex-grow">
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-6 h-6" />
           <Input
             type="text"
             placeholder="Search"
-            className="pl-10 w-full"
+            className="pl-12 w-full h-[50px] text-lg border-[#797979] rounded-[6px]"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <Select value={selectedState} onValueChange={setSelectedState}>
-          <SelectTrigger className="w-full md:w-[200px]">
+          <SelectTrigger className="w-full md:w-1/2 h-[50px] text-lg border-[#797979] rounded-[6px]">
             <SelectValue placeholder="State" />
           </SelectTrigger>
           <SelectContent>
@@ -123,11 +138,11 @@ const AllJobs: React.FC = () => {
             value={filters.datePosted}
             onValueChange={(value) => handleFilterChange("datePosted", value)}
           >
-            <SelectTrigger className="w-[150px]">
+            <SelectTrigger className="w-[150px] md:w-[200px] md:h-[50px] md:text-lg md:border-[#797979] md:rounded-[6px]">
               <SelectValue placeholder="Date Posted" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="Any time">Any time</SelectItem>
+              <SelectItem value="all">Any time</SelectItem>
               <SelectItem value="Past 24 hours">Past 24 hours</SelectItem>
               <SelectItem value="Past week">Past week</SelectItem>
               <SelectItem value="Past month">Past month</SelectItem>
@@ -137,10 +152,11 @@ const AllJobs: React.FC = () => {
             value={filters.remote}
             onValueChange={(value) => handleFilterChange("remote", value)}
           >
-            <SelectTrigger className="w-[150px]">
+            <SelectTrigger className="w-[150px] md:w-[200px] md:h-[50px] md:text-lg md:border-[#797979] md:rounded-[6px]">
               <SelectValue placeholder="Remote" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="all">All</SelectItem>
               <SelectItem value="On-site">On-site</SelectItem>
               <SelectItem value="Remote">Remote</SelectItem>
               <SelectItem value="Hybrid">Hybrid</SelectItem>
@@ -150,10 +166,11 @@ const AllJobs: React.FC = () => {
             value={filters.jobType}
             onValueChange={(value) => handleFilterChange("jobType", value)}
           >
-            <SelectTrigger className="w-[150px]">
+            <SelectTrigger className="w-[150px] md:w-[200px] md:h-[50px] md:text-lg md:border-[#797979] md:rounded-[6px]">
               <SelectValue placeholder="Job Type" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="all">All</SelectItem>
               <SelectItem value="Full-time">Full-time</SelectItem>
               <SelectItem value="Part-time">Part-time</SelectItem>
               <SelectItem value="Contract">Contract</SelectItem>
@@ -164,12 +181,15 @@ const AllJobs: React.FC = () => {
           </Select>
           <Select
             value={filters.experienceLevel}
-            onValueChange={(value) => handleFilterChange("experienceLevel", value)}
+            onValueChange={(value) =>
+              handleFilterChange("experienceLevel", value)
+            }
           >
-            <SelectTrigger className="w-[200px]">
+            <SelectTrigger className="w-[150px] md:w-[200px] md:h-[50px] md:text-lg md:border-[#797979] md:rounded-[6px]">
               <SelectValue placeholder="Experience level" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="all">All</SelectItem>
               <SelectItem value="Internship">Internship</SelectItem>
               <SelectItem value="Entry level">Entry level</SelectItem>
               <SelectItem value="Associate">Associate</SelectItem>
@@ -182,10 +202,11 @@ const AllJobs: React.FC = () => {
             value={filters.salary}
             onValueChange={(value) => handleFilterChange("salary", value)}
           >
-            <SelectTrigger className="w-[150px]">
+            <SelectTrigger className="w-[150px] md:w-[200px] md:h-[50px] md:text-lg md:border-[#797979] md:rounded-[6px]">
               <SelectValue placeholder="Salary" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="all">All</SelectItem>
               <SelectItem value="0-40000">$0 - $40,000</SelectItem>
               <SelectItem value="40000-80000">$40,000 - $80,000</SelectItem>
               <SelectItem value="80000-120000">$80,000 - $120,000</SelectItem>
@@ -196,10 +217,10 @@ const AllJobs: React.FC = () => {
           </Select>
           <Button
             variant="outline"
-            className="bg-primary-600 text-white hover:text-white hover:bg-primary-700"
+            className="md:h-[50px] md:px-6 bg-primary-600 text-white md:text-lg md:rounded-[6px] transition-all duration-300 hover:bg-primary-50 hover:border hover:border-primary-600 group"
             onClick={resetFilters}
           >
-            Reset Filters
+            <span className="group-hover:text-primary-600">Reset Filters</span>
           </Button>
         </div>
       </div>
@@ -214,39 +235,48 @@ const AllJobs: React.FC = () => {
 };
 
 const JobCard: React.FC<{ job: Job }> = ({ job }) => (
-  <div className="border-t border-gray-200 pt-8">
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-      <div>
-        <h3 className="text-2xl font-bold mb-2">{job.title}</h3>
-        <div className="flex items-center gap-4 text-gray-600 mb-2">
-          <div className="flex items-center">
-            <MapPin className="w-5 h-5 mr-1" />
-            <span>{job.location}</span>
+  <div className="flex flex-col gap-5 w-full sm:border-t sm:border-gray-200 sm:pt-8 sm:relative">
+    <div className="flex flex-col gap-5 w-full">
+      <div className="flex flex-col gap-2.5 w-full">
+        <h3 className="text-3xl sm:text-4xl font-bold text-[#222222]">
+          {job.title}
+        </h3>
+        <div className="flex flex-col gap-2.5 w-full">
+          <div className="flex items-center gap-2.5">
+            <MapPin className="w-6 h-6 text-[#797979]" />
+            <span className="text-lg text-[#222222]">{job.location}</span>
           </div>
-          <div className="flex items-center">
-            <Briefcase className="w-5 h-5 mr-1" />
-            <span>${job.salary.toLocaleString()}/year</span>
+          <div className="flex items-center gap-2.5">
+            <Briefcase className="w-6 h-6 text-[#797979]" />
+            <span className="text-lg text-[#222222]">
+              ${job.salary.toLocaleString()}/year
+            </span>
           </div>
         </div>
-        <p className="text-gray-700 mb-4">{job.description}</p>
+        <p className="text-lg text-[#222222]">{job.description}</p>
       </div>
-      <Link href={`/join-our-team/${job.id}`}>
-        <Button className="bg-primary-600 text-white hover:bg-primary-700">
+      <div className="flex gap-5">
+        <span className="flex items-center px-3 py-1.5 rounded-full text-lg border border-[#797979] text-[#222222]">
+          <MapPin className="w-6 h-6 mr-2.5 text-[#797979]" />
+          {job.type}
+        </span>
+        <span className="flex items-center px-3 py-1.5 rounded-full text-lg border border-[#797979] text-[#222222]">
+          <Clock className="w-6 h-6 mr-2.5 text-[#797979]" />
+          {job.schedule}
+        </span>
+      </div>
+    </div>
+    <Link
+      href={`/join-our-team/${job.id}`}
+      className="w-full sm:w-auto sm:absolute sm:right-0 sm:top-8"
+    >
+      <button className="w-full sm:w-[162px] h-[65px] flex justify-center items-center px-6 py-2.5 gap-2 bg-primary-600 rounded-xl transition-all duration-300 hover:bg-primary-50 hover:border hover:border-primary-600 group">
+        <span className="font-semibold text-xl text-white group-hover:text-primary-600">
           View
-          <ArrowUpRight className="ml-2 h-4 w-4" />
-        </Button>
-      </Link>
-    </div>
-    <div className="flex gap-4">
-      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-        <MapPin className="w-4 h-4 mr-1" />
-        {job.type}
-      </span>
-      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-        <Clock className="w-4 h-4 mr-1" />
-        {job.schedule}
-      </span>
-    </div>
+        </span>
+        <ArrowUpRight className="w-6 h-6 text-white group-hover:text-primary-600" />
+      </button>
+    </Link>
   </div>
 );
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Heart, Clock, Stethoscope } from "lucide-react";
+import { Clock, Stethoscope } from "lucide-react";
 
 interface BannerItemProps {
   icon: React.ReactNode;
@@ -30,7 +30,16 @@ const Banner = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-4 md:px-20 lg:px-40 py-10 w-full bg-[#4E2E87]">
       <BannerItem
-        icon={<Heart size={80} color="#F8F3FE" />}
+        icon={
+          <div className="relative w-[84px] h-[84px]">
+            <Image
+              src="/images/Union.png"
+              alt="Quality"
+              fill
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+        }
         title="Care"
         description="The care you need at the home you love."
       />

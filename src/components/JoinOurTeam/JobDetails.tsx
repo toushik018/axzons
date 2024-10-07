@@ -95,10 +95,10 @@ const JobDetails: React.FC<JobDetailsProps> = ({ job }) => {
               <div className="bg-[#F3E8FF] rounded-2xl p-5 flex flex-col items-start gap-5">
                 <Button
                   onClick={() => setShowApplicationForm(true)}
-                  className="w-full bg-[#7E22CE] text-white hover:bg-[#6B1FAF] rounded-xl py-5 px-6 flex justify-center items-center gap-2"
+                  className="w-full bg-[#7E22CE] text-white rounded-xl py-5 px-6 flex justify-center items-center gap-2 transition-all duration-300 hover:bg-primary-50 hover:border hover:border-primary-600 group"
                 >
-                  <span className="text-xl font-semibold">Apply</span>
-                  <ArrowUpRight className="w-6 h-6" />
+                  <span className="text-xl font-semibold group-hover:text-primary-600">Apply</span>
+                  <ArrowUpRight className="w-6 h-6 group-hover:text-primary-600" />
                 </Button>
                 <div className="bg-white rounded-2xl p-5 w-full flex flex-col items-start gap-2.5">
                   <h2 className="text-2xl font-bold text-[#222222]">

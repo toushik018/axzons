@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -16,6 +16,16 @@ import ContactInfo from "./ContactInfo";
 import ResumeUpload from "./ResumeUpload";
 import AdditionalQuestions from "./AdditionalQuestions";
 import ReviewApplication from "./ReviewApplication";
+import { schema } from "@/schemas/jobApplyForm";
+
+const MAX_FILE_SIZE = 4 * 1024 * 1024;
+
+export const validateFileSize = (file: File | undefined) => {
+  if (file && file.size > MAX_FILE_SIZE) {
+    return false;
+  }
+  return true;
+};
 
 interface JobApplicationFormProps {
   isOpen: boolean;
@@ -23,19 +33,6 @@ interface JobApplicationFormProps {
 }
 
 const steps = ["Contact Info", "Resume", "Additional Questions"];
-
-const schema = z.object({
-  firstName: z.string().min(1, { message: "First name is required" }),
-  lastName: z.string().min(1, { message: "Last name is required" }),
-  email: z.string().email({ message: "Invalid email address" }),
-  phoneCountryCode: z.string().optional(),
-  phoneNumber: z.string().optional(),
-  resume: z.any().refine((file) => file instanceof File, { message: "Resume is required" }),
-  coverLetter: z.any().optional(),
-  legallyAuthorized: z.enum(["yes", "no"], { required_error: "This field is required" }),
-  requireVisa: z.enum(["yes", "no"], { required_error: "This field is required" }),
-  driversLicense: z.enum(["yes", "no"], { required_error: "This field is required" }),
-});
 
 export type FormData = z.infer<typeof schema> & {
   additionalQuestions?: string;
@@ -48,21 +45,34 @@ export default function JobApplicationForm({
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const { 
-    register, 
-    handleSubmit, 
-    control, // Add this
-    formState: { errors }, 
-    trigger, 
-    getValues, 
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+    trigger,
+    getValues,
     setValue,
-    setError  
+    setError,
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     mode: "onChange",
   });
 
+  // Reset form state when dialog is closed
+  useEffect(() => {
+    if (!isOpen) {
+      setCurrentStep(0);
+      setIsSubmitted(false);
+      reset();
+    }
+  }, [isOpen, reset]);
+
   const onSubmit = (data: FormData) => {
+    if (!data.coverLetter) {
+      delete data.coverLetter;
+    }
     console.log(data);
     setIsSubmitted(true);
   };
@@ -73,12 +83,12 @@ export default function JobApplicationForm({
 
     if (isStepValid) {
       if (currentStep === 2) {
-        // Check if all additional questions are answered
         const { legallyAuthorized, requireVisa, driversLicense } = getValues();
         if (!legallyAuthorized || !requireVisa || !driversLicense) {
           setError("root.additionalQuestions", {
             type: "manual",
-            message: "Please answer all additional questions before proceeding."
+            message:
+              "Please answer all additional questions before proceeding.",
           });
           return;
         }
@@ -86,7 +96,6 @@ export default function JobApplicationForm({
       setCurrentStep((prev) => Math.min(prev + 1, steps.length));
     }
   };
-
   const handleBack = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 0));
   };
@@ -107,13 +116,33 @@ export default function JobApplicationForm({
   const renderStep = () => {
     switch (currentStep) {
       case 0:
-        return <ContactInfo register={register} errors={errors} control={control} />;
+        return (
+          <ContactInfo register={register} errors={errors} control={control} />
+        );
       case 1:
-        return <ResumeUpload register={register} errors={errors} setValue={setValue} />;
+        return (
+          <ResumeUpload
+            register={register}
+            errors={errors}
+            setValue={setValue}
+          />
+        );
       case 2:
-        return <AdditionalQuestions register={register} errors={errors} control={control} />;
+        return (
+          <AdditionalQuestions
+            register={register}
+            errors={errors}
+            control={control}
+          />
+        );
       case 3:
-        return <ReviewApplication formData={getValues()} onBack={handleBack} onSubmit={handleSubmit(onSubmit)} />;
+        return (
+          <ReviewApplication
+            formData={getValues()}
+            onBack={handleBack}
+            onSubmit={handleSubmit(onSubmit)}
+          />
+        );
       default:
         return null;
     }
@@ -149,7 +178,6 @@ export default function JobApplicationForm({
             <DialogTitle className="text-2xl sm:text-3xl md:text-[36px] font-bold text-[#7E22CE]">
               Application Submitted
             </DialogTitle>
-           
           </DialogHeader>
           <div className="flex flex-col items-center justify-center text-center mt-6 sm:mt-8 md:mt-10 space-y-6 sm:space-y-8 md:space-y-10">
             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[#7E22CE] rounded-full flex items-center justify-center">
@@ -200,7 +228,7 @@ export default function JobApplicationForm({
             {steps.map((step, index) => (
               <div
                 key={step}
-                className="flex flex-col items-center w-1/3 sm:w-[200px]"
+                className="flex flex-col items-center w-1/6  sm:w-[250px]"
               >
                 {renderStepIndicator(index)}
                 <span className="text-xs sm:text-sm text-center text-black mt-1 sm:mt-2">
@@ -236,7 +264,9 @@ export default function JobApplicationForm({
             </div>
           )}
           {errors.root?.additionalQuestions && (
-            <p className="text-red-500 mt-2 text-sm">{errors.root.additionalQuestions.message}</p>
+            <p className="text-red-500 mt-2 text-sm">
+              {errors.root.additionalQuestions.message}
+            </p>
           )}
         </form>
       </DialogContent>

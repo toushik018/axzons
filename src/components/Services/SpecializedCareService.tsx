@@ -41,21 +41,21 @@ export default function SpecializedCareService() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white shadow-md rounded-xl p-6 flex items-start gap-6"
+              className="bg-white shadow-md rounded-xl p-6 flex flex-col sm:flex-row items-start gap-6"
             >
-              <div className="flex-shrink-0 w-16 h-16 bg-[#F3E8FF] rounded-[6.55px] flex items-center justify-center p-2">
+              <div className="flex-shrink-0 w-24 h-24 bg-[#F3E8FF] rounded-[6.55px] flex items-center justify-center p-2">
                 <Image
                   src={service.icon}
                   alt={service.title}
-                  width={64}
-                  height={64}
+                  width={100}
+                  height={100}
                 />
               </div>
               <div className="flex-grow">
-                <h4 className="font-bold text-xl text-[#222222] mb-2">
+                <h4 className="font-bold text-2xl text-[#222222] mb-2">
                   {service.title}
                 </h4>
-                <p className="text-sm text-[#797979]">{service.description}</p>
+                <p className="text-lg text-[#797979]">{service.description}</p>
               </div>
             </div>
           ))}

@@ -43,11 +43,12 @@ export default function HomecareServices() {
               </ul>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="flex justify-center items-center py-2.5 px-6 sm:px-8 gap-2 w-full sm:w-[376px] h-[65px] bg-primary-600 hover:bg-primary-700 rounded-xl">
-                <Phone size={24} className="text-white" />
-                <span className="font-semibold text-xl text-white whitespace-nowrap">
-                  (866) 4AXZONS
-                </span>
+              <Button
+                variant="primary"
+                className="w-full md:w-[376px] h-[65px] px-4 md:px-8 py-2.5 flex items-center justify-center gap-2 text-xl font-semibold"
+              >
+                <Phone className="h-5 w-5 md:h-6 md:w-6" />
+                (866) 4AXZONS
               </Button>
               <Button
                 variant="outline"

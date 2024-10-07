@@ -1,10 +1,12 @@
-import React from "react";
+import * as React from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -64,12 +66,15 @@ const ContactInfo: React.FC<ContactInfoProps> = ({
                 <SelectTrigger className="w-full h-[50px] border-[#797979] rounded-[6px]">
                   <SelectValue placeholder="Select Country Code" />
                 </SelectTrigger>
-                <SelectContent>
-                  {countryCodes.map((code) => (
-                    <SelectItem key={code.value} value={code.value}>
-                      {code.label}
-                    </SelectItem>
-                  ))}
+                <SelectContent className="max-h-[500px] !overflow-y-auto">
+                  <SelectGroup>
+                    <SelectLabel>Country Codes</SelectLabel>
+                    {countryCodes.map((code) => (
+                      <SelectItem key={code.value} value={code.value}>
+                        {code.label}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
                 </SelectContent>
               </Select>
             )}
@@ -100,7 +105,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({
               message: "Invalid email address",
             },
           })}
-          className="w-full h-[50px] border-[#797979] rounded-[6px]"
+          className="w-full md:w-1/2 h-[50px] border-[#797979] rounded-[6px]"
         />
         {errors.email && (
           <p className="text-red-500 text-sm">{errors.email.message}</p>

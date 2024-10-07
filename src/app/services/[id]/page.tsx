@@ -7,12 +7,46 @@ import SpecializedCare from "@/components/Services/SpecializedCare";
 import NutritionalCounseling from "@/components/Services/NutritionalCounseling";
 import MedicalSocialService from "@/components/Services/MedicalSocialService";
 import CDPAP from "@/components/Services/CDPAP";
-
+import { Metadata } from "next";
 
 export async function generateStaticParams() {
   return serviceData.map((service) => ({
     id: service.slug,
   }));
+}
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const service = serviceData.find(s => s.slug === params.id);
+  
+  if (!service) {
+    return {
+      title: "Service Not Found",
+    };
+  }
+
+  return {
+    title: `${service.title} | Axzons Homecare Services`,
+    description: service.description,
+    keywords: `${service.title.toLowerCase()}, home health care, Axzons Homecare, ${service.slug.replace('-', ' ')}`,
+    openGraph: {
+      title: `${service.title} | Axzons Homecare Services`,
+      description: service.description,
+      images: [
+        {
+          url: `https://axzons.com${service.image}`,
+          width: 800,
+          height: 600,
+          alt: service.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} | Axzons Homecare Services`,
+      description: service.description,
+      images: [`https://axzons.com${service.image}`],
+    },
+  };
 }
 
 const ServicePage = ({ params }: { params: { id: string } }) => {

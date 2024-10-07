@@ -23,8 +23,11 @@ export default function JoinFamily() {
               Jersey and Georgia.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 w-full sm:w-auto">
-              <Button className="flex items-center justify-center gap-2 w-full sm:w-[376px] h-[65px] bg-primary-600 hover:bg-primary-700 rounded-md text-white text-lg font-semibold">
-                <Phone className="w-6 h-6" />
+              <Button
+                variant="primary"
+                className="w-full md:w-[376px] h-[65px] px-4 md:px-8 py-2.5 flex items-center justify-center gap-2 text-xl font-semibold"
+              >
+                <Phone className="h-5 w-5 md:h-6 md:w-6" />
                 (866) 4AXZONS
               </Button>
               <Button
@@ -68,7 +71,10 @@ export default function JoinFamily() {
                   />
                 </div>
                 <div className="w-full sm:w-1/2">
-                  <Button className="w-full h-[65px] bg-primary-600 hover:bg-primary-700 rounded-md text-white text-lg font-semibold flex items-center justify-center gap-2">
+                  <Button
+                    variant="primary"
+                    className="w-full h-[65px] rounded-md text-white text-lg font-semibold flex items-center justify-center gap-2"
+                  >
                     <Search className="w-6 h-6" />
                     Find a local office
                   </Button>
