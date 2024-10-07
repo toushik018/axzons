@@ -30,9 +30,9 @@ const config: Config = {
 					300: '#C19FF7',
 					400: '#AA7CF4',
 					500: '#9359F1',
-					600: '#7E22CE',
+					600: '#7E22CE',  // The color you provided
 					700: '#6A1FB1',
-					800: '#4E2E87',
+					800: '#4E2E87',  // The color you provided
 					900: '#3A1D6E',
 				},
 				secondary: {

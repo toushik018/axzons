@@ -9,9 +9,9 @@ export default function JoinFamily() {
   const [activeTab, setActiveTab] = useState("request");
 
   return (
-    <section className="bg-white py-16 px-4 md:px-10 lg:px-20 max-w-[1920px]">
-      <div className="max-w-[1600px] mx-auto">
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-20">
+    <section className="bg-white">
+      <div className="relative w-full max-w-[1920px] mx-auto">
+        <div className="flex flex-col lg:flex-row justify-between items-start p-6 sm:p-10 lg:p-20 xl:p-[80px_160px] gap-12 lg:gap-20">
           <div className="flex flex-col gap-6 w-full lg:w-1/2">
             <h2 className="text-4xl lg:text-5xl font-bold text-[#222222]">
               Join the Axzons family!
@@ -43,7 +43,7 @@ export default function JoinFamily() {
             <div className="flex gap-8">
               <button
                 onClick={() => setActiveTab("request")}
-                className={`px-4 py-2 text-lg font-semibold ${
+                className={`px-4 py-2 text-[20px] font-semibold ${
                   activeTab === "request"
                     ? "text-primary-600 border-b-2 border-primary-600"
                     : "text-[#797979]"
@@ -53,7 +53,7 @@ export default function JoinFamily() {
               </button>
               <button
                 onClick={() => setActiveTab("join")}
-                className={`px-4 py-2 text-lg font-semibold ${
+                className={`px-4 py-2 text-[20px] font-semibold ${
                   activeTab === "join"
                     ? "text-primary-600 border-b-2 border-primary-600"
                     : "text-[#797979]"
